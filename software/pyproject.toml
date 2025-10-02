@@ -3,22 +3,21 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gim6010-motor-control"
+name = "bsl-droid"
 version = "0.1.0"
-description = "GIM6010-8モータのCAN通信制御システム"
+description = "BSL Droid: GIM6010-8モータ制御と歩行生成システム"
 readme = "README.md"
 authors = [
-    {name = "BSL Droid Project", email = "bsl@example.com"}
+    {name = "Yutaro KIMURA"},
+    {name = "BSL Droid Project"}
 ]
 license = {text = "MIT"}
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -26,12 +25,14 @@ classifiers = [
     "Topic :: System :: Hardware",
 ]
 keywords = [
-    "motor-control", "can-bus", "robotics", "gim6010", "motor-driver"
+    "motor-control", "can-bus", "robotics", "gim6010", "motor-driver", "gait-generation", "biped-robot"
 ]
 
 dependencies = [
     "python-can>=4.3.1",
-    "numpy>=1.21.0",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "pyzmq>=26.0",
 ]
 
 [project.optional-dependencies]
@@ -58,10 +59,13 @@ include = ["src*"]
 [tool.setuptools.package-dir]
 "" = "."
 
+[tool.uv]
+package = false
+
 # Black (コードフォーマッタ) 設定
 [tool.black]
 line-length = 100
-target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -79,7 +83,7 @@ extend-exclude = '''
 
 # MyPy (型チェッカ) 設定
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -118,14 +122,14 @@ omit = [
 
 [tool.coverage.report]
 exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\bProtocol\):",
-    "@(abc\.)?abstractmethod",
+    'pragma: no cover',
+    'def __repr__',
+    'if self.debug:',
+    'if settings.DEBUG',
+    'raise AssertionError',
+    'raise NotImplementedError',
+    'if 0:',
+    "if __name__ == '__main__':",
+    'class .*\bProtocol\):',
+    '@(abc\.)?abstractmethod',
 ]
