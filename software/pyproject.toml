@@ -1,0 +1,17 @@
+[project]
+name = "bsl-droid-gait"
+version = "0.1.0"
+description = "Gait generation and visualization scripts for the bsl-droid biped robot"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "kim-xps12" }
+]
+dependencies = [
+  "numpy>=1.26",
+  "matplotlib>=3.8",
+  "pyzmq>=26.0"
+]
+
+[tool.uv]
+package = false
