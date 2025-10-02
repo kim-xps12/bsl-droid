@@ -1,5 +1,0 @@
-# Python CAN
-python-can==4.3.1
-
-# その他の依存関係
-numpy>=1.21.0
