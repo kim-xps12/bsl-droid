@@ -140,8 +140,9 @@ def scan_all_nodes():
     print("-" * 50)
     
     found_nodes = {}
-    
-    for node_id in range(32):
+
+    # 10から32までスキャン
+    for node_id in range(10, 33):
         print(f"Scanning Node ID {node_id}...", end=" ")
 
         try:
