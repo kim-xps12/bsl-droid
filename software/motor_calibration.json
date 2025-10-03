@@ -1,5 +1,5 @@
 {
-  "scan_timestamp": "2025-10-03T21:29:23.389738",
+  "scan_timestamp": "2025-10-04T05:04:43.359420",
   "motors": {
     "1": {
       "shadow_count": -120175,
@@ -7,14 +7,14 @@
       "timestamp": "2025-10-03T18:04:31.328203"
     },
     "23": {
-      "shadow_count": 21451,
-      "count_in_cpr": 2015,
-      "timestamp": "2025-10-03T18:16:11.995823"
+      "shadow_count": 1867,
+      "count_in_cpr": 15200,
+      "timestamp": "2025-10-04T05:04:39.847839"
     },
     "25": {
-      "shadow_count": -106683,
-      "count_in_cpr": 8006,
-      "timestamp": "2025-10-03T17:52:15.073001"
+      "shadow_count": -90381,
+      "count_in_cpr": 7921,
+      "timestamp": "2025-10-04T05:04:39.854099"
     },
     "31": {
       "shadow_count": -5334,
@@ -22,29 +22,44 @@
       "timestamp": "2025-10-03T18:13:50.459738"
     },
     "15": {
-      "shadow_count": -68520,
-      "count_in_cpr": 13399,
-      "timestamp": "2025-10-03T20:41:11.895947"
+      "shadow_count": -86744,
+      "count_in_cpr": 11559,
+      "timestamp": "2025-10-04T05:04:37.315583"
     },
     "14": {
-      "shadow_count": -10827,
-      "count_in_cpr": 5556,
-      "timestamp": "2025-10-03T20:41:11.892164"
+      "shadow_count": -46732,
+      "count_in_cpr": 2419,
+      "timestamp": "2025-10-04T05:04:37.312592"
     },
     "13": {
-      "shadow_count": 3219,
-      "count_in_cpr": 3218,
-      "timestamp": "2025-10-03T20:41:11.891609"
+      "shadow_count": -13251,
+      "count_in_cpr": 3132,
+      "timestamp": "2025-10-04T05:04:37.310544"
     },
     "21": {
-      "shadow_count": 23517,
-      "count_in_cpr": 7133,
-      "timestamp": "2025-10-03T21:07:22.665407"
+      "shadow_count": -105539,
+      "count_in_cpr": 9148,
+      "timestamp": "2025-10-04T05:04:39.839917"
     },
     "22": {
-      "shadow_count": -33409,
-      "count_in_cpr": 15742,
-      "timestamp": "2025-10-03T21:29:18.810268"
+      "shadow_count": -34727,
+      "count_in_cpr": 14424,
+      "timestamp": "2025-10-04T05:04:39.845927"
+    },
+    "11": {
+      "shadow_count": -27718,
+      "count_in_cpr": 5049,
+      "timestamp": "2025-10-04T05:04:37.300021"
+    },
+    "12": {
+      "shadow_count": -5722,
+      "count_in_cpr": 10416,
+      "timestamp": "2025-10-04T05:04:37.302359"
+    },
+    "24": {
+      "shadow_count": -98609,
+      "count_in_cpr": 16080,
+      "timestamp": "2025-10-04T05:04:39.851698"
     }
   }
 }

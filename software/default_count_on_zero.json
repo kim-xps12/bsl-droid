@@ -1,5 +1,5 @@
 {
-  "scan_timestamp": "2025-10-03T21:27:34.775313",
+  "scan_timestamp": "2025-10-04T04:47:18.207992",
   "motors": {
     "1": {
       "shadow_count": -56459,
@@ -7,14 +7,14 @@
       "timestamp": "2025-10-03T18:03:49.294555"
     },
     "23": {
-      "shadow_count": -11,
-      "count_in_cpr": 13321,
-      "timestamp": "2025-10-03T18:15:39.730644"
+      "shadow_count": -19,
+      "count_in_cpr": 13314,
+      "timestamp": "2025-10-04T02:12:28.784116"
     },
     "25": {
-      "shadow_count": -87325,
-      "count_in_cpr": 10980,
-      "timestamp": "2025-10-03T17:51:05.733425"
+      "shadow_count": -87315,
+      "count_in_cpr": 10989,
+      "timestamp": "2025-10-04T02:57:13.190396"
     },
     "31": {
       "shadow_count": -56457,
@@ -22,9 +22,9 @@
       "timestamp": "2025-10-03T18:13:16.784747"
     },
     "24": {
-      "shadow_count": -174520,
-      "count_in_cpr": 5703,
-      "timestamp": "2025-10-03T18:21:24.958291"
+      "shadow_count": 17,
+      "count_in_cpr": 17,
+      "timestamp": "2025-10-04T04:47:18.207897"
     },
     "15": {
       "shadow_count": -57344,
@@ -50,6 +50,16 @@
       "shadow_count": -57389,
       "count_in_cpr": 8146,
       "timestamp": "2025-10-03T21:27:34.775228"
+    },
+    "11": {
+      "shadow_count": -57381,
+      "count_in_cpr": 8154,
+      "timestamp": "2025-10-04T00:01:48.454218"
+    },
+    "12": {
+      "shadow_count": -103,
+      "count_in_cpr": 16034,
+      "timestamp": "2025-10-04T00:09:17.535634"
     }
   }
 }
