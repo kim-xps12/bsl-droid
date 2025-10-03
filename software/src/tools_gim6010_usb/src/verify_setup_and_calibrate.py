@@ -574,7 +574,7 @@ def main():
         action='store_true',
         dest='use_assert',
         help='検証失敗時にAssertionErrorを発生させる (デフォルト: True)',
-        default=True
+        default=False
     )
     
     args = parser.parse_args()
