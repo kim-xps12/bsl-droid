@@ -3,6 +3,7 @@ import struct
 import time
 import json
 from datetime import datetime
+import sys
 
 # CAN接続の設定（仕様書に従い socketcan を利用）
 bus = can.interface.Bus(interface='socketcan', channel='can0', bitrate=1000000)
@@ -13,6 +14,7 @@ CMD_SET_AXIS_STATE = 0x007
 CMD_SET_CONTROLLER_MODE = 0x00B
 CMD_SET_INPUT_POS = 0x00C
 CMD_CLEAR_ERRORS = 0x018
+CMD_REBOOT = 0x016
 
 AXIS_STATE_IDLE = 1
 AXIS_STATE_CLOSED_LOOP_CONTROL = 8
@@ -57,6 +59,23 @@ def clear_errors(bus, node_id: int):
     arb_id = make_can_id(node_id, CMD_CLEAR_ERRORS)
     payload = bytes()
     send_frame(bus, arb_id, payload)
+
+
+def reboot_all(bus, retries: int = 3, delay: float = 0.05):
+    """Broadcast a reboot command to all nodes using node_id = 0x3F (63).
+
+    Sends the Reboot CMD (no payload) several times to improve reliability.
+    """
+    broadcast_id = 0x3F
+    arb_id = make_can_id(broadcast_id, CMD_REBOOT)
+    payload = bytes()
+    print(f"Broadcasting reboot to all nodes (CAN ID: 0x{arb_id:03X}) x{retries}")
+    for i in range(retries):
+        try:
+            send_frame(bus, arb_id, payload)
+        except Exception as e:
+            print(f"Failed sending reboot frame (attempt {i+1}): {e}")
+        time.sleep(delay)
 
 
 def get_encoder_position_from_msg(msg):
@@ -200,6 +219,11 @@ def main():
     print("=" * 50)
     
     try:
+        # optional: reboot all nodes first if requested via CLI
+        reboot_flag = '--reboot-all' in sys.argv
+        if reboot_flag:
+            reboot_all(bus)
+
         # ノードをスキャン
         found_nodes = scan_all_nodes()
         
