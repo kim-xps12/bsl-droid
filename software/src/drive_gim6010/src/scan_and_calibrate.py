@@ -177,7 +177,7 @@ def scan_all_nodes():
     found_nodes = {}
 
     # 10から32までスキャン
-    for node_id in range(10, 33):
+    for node_id in [11, 12, 13, 14, 15, 21, 22, 23, 24, 25]:#range(10, 33):
         print(f"Scanning Node ID {node_id}...", end=" ")
 
         try:
