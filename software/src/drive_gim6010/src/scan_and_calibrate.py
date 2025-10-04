@@ -78,6 +78,22 @@ def reboot_all(bus, retries: int = 3, delay: float = 0.05):
         time.sleep(delay)
 
 
+def reboot_node(bus, node_id: int, retries: int = 3, delay: float = 0.05):
+    """Send a reboot command targeted at a single node ID several times.
+
+    This is used to nudge nodes that did not respond during a scan.
+    """
+    arb_id = make_can_id(node_id, CMD_REBOOT)
+    payload = bytes()
+    print(f"Sending reboot to Node {node_id} (CAN ID: 0x{arb_id:03X}) x{retries}")
+    for i in range(retries):
+        try:
+            send_frame(bus, arb_id, payload)
+        except Exception as e:
+            print(f"Failed sending reboot to node {node_id} (attempt {i+1}): {e}")
+        time.sleep(delay)
+
+
 def get_encoder_position_from_msg(msg):
     # 同期メッセージから position を推定する簡易版
     if msg is None or len(msg.data) < 4:
@@ -180,6 +196,24 @@ def scan_all_nodes():
             }
         else:
             print("Not found")
+            # Try sending a targeted reboot to the node that didn't respond,
+            # then do a quick re-scan to see if it comes back online.
+            try:
+                reboot_node(bus, node_id)
+                # wait a little for node to reboot and announce
+                time.sleep(0.25)
+                shadow_count2, count_in_cpr2 = scan_node(node_id, timeout=0.6)
+                if shadow_count2 is not None:
+                    print(f"✓ Found after reboot! Shadow Count: {shadow_count2}")
+                    found_nodes[node_id] = {
+                        "shadow_count": shadow_count2,
+                        "count_in_cpr": count_in_cpr2,
+                        "timestamp": datetime.now().isoformat()
+                    }
+                else:
+                    print(f"Still not found after reboot for Node {node_id}")
+            except Exception as e:
+                print(f"Error while attempting reboot/rescan for Node {node_id}: {e}")
     
     return found_nodes
 
