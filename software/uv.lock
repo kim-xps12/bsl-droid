@@ -194,7 +194,7 @@ dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "odrive" },
-    { name = "python-can" },
+    { name = "python-can", extra = ["gs-usb"] },
     { name = "pyzmq" },
     { name = "tqdm" },
 ]
@@ -218,7 +218,7 @@ requires-dist = [
     { name = "odrive", specifier = ">=0.5.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
-    { name = "python-can", specifier = ">=4.3.1" },
+    { name = "python-can", extras = ["gs-usb"], specifier = ">=4.3.1" },
     { name = "pyzmq", specifier = ">=26.0" },
     { name = "tqdm", specifier = ">=4.65.0" },
 ]
@@ -788,6 +788,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/0b/31/8fbc5af2d183bff20f21aa743b4088eac4445d2bb1cdece449ae80e4e2d1/frozenlist-1.7.0-cp313-cp313t-win32.whl", hash = "sha256:3a14027124ddb70dfcee5148979998066897e79f89f64b13328595c4bdf77c81", size = 43059, upload-time = "2025-06-09T23:02:02.072Z" },
     { url = "https://files.pythonhosted.org/packages/bb/ed/41956f52105b8dbc26e457c5705340c67c8cc2b79f394b79bffc09d0e938/frozenlist-1.7.0-cp313-cp313t-win_amd64.whl", hash = "sha256:3bf8010d71d4507775f658e9823210b7427be36625b387221642725b515dcf3e", size = 47516, upload-time = "2025-06-09T23:02:03.779Z" },
     { url = "https://files.pythonhosted.org/packages/ee/45/b82e3c16be2182bff01179db177fe144d58b5dc787a7d4492c6ed8b9317f/frozenlist-1.7.0-py3-none-any.whl", hash = "sha256:9a5af342e34f7e97caf8c995864c7a396418ae2859cc6fdf1b1073020d516a7e", size = 13106, upload-time = "2025-06-09T23:02:34.204Z" },
+]
+
+[[package]]
+name = "gs-usb"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyusb" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a1/37/a7b1b2d458687a3c9bf90a4d5a299ae5b2d74791ba6516b51bd939857c1d/gs_usb-0.3.0.tar.gz", hash = "sha256:1f488fd7cd09d753dff74b7d05349f07933dc556844e3cd9df02c4e4b746bf8f", size = 6906, upload-time = "2022-08-30T01:19:01.969Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2d/e1/a97e0a2b46f83096e5172ab45dbd7528405b45bfaffd3ceff1bf4b273d9b/gs_usb-0.3.0-py2.py3-none-any.whl", hash = "sha256:b7e5c8a367262fc2ca5f13f33bdc56e3b76b3dc01e0b8eeb82183dfb9b34312f", size = 7312, upload-time = "2022-08-30T01:19:00.119Z" },
 ]
 
 [[package]]
@@ -1779,6 +1791,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/58/34/e4ac153acdbcfba7f48bc73d6586a74c91cc919fcc2e29acbf81be329d1f/python_can-4.6.1-py3-none-any.whl", hash = "sha256:17f95255868a95108dcfcb90565a684dad32d5a3ebb35afd14f739e18c84ff6c", size = 276996, upload-time = "2025-08-12T07:44:56.55Z" },
 ]
 
+[package.optional-dependencies]
+gs-usb = [
+    { name = "gs-usb" },
+]
+
 [[package]]
 name = "python-dateutil"
 version = "2.9.0.post0"
@@ -1798,6 +1815,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/30/5f/e959a442435e24f6fb5a01aec6c657079ceaca1b3baf18561c3728d681da/pytokens-0.1.10.tar.gz", hash = "sha256:c9a4bfa0be1d26aebce03e6884ba454e842f186a59ea43a6d3b25af58223c044", size = 12171, upload-time = "2025-02-19T14:51:22.001Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/60/e5/63bed382f6a7a5ba70e7e132b8b7b8abbcf4888ffa6be4877698dcfbed7d/pytokens-0.1.10-py3-none-any.whl", hash = "sha256:db7b72284e480e69fb085d9f251f66b3d2df8b7166059261258ff35f50fb711b", size = 12046, upload-time = "2025-02-19T14:51:18.694Z" },
+]
+
+[[package]]
+name = "pyusb"
+version = "1.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/6b/ce3727395e52b7b76dfcf0c665e37d223b680b9becc60710d4bc08b7b7cb/pyusb-1.3.1.tar.gz", hash = "sha256:3af070b607467c1c164f49d5b0caabe8ac78dbed9298d703a8dbf9df4052d17e", size = 77281, upload-time = "2025-01-08T23:45:01.866Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/28/b8/27e6312e86408a44fe16bd28ee12dd98608b39f7e7e57884a24e8f29b573/pyusb-1.3.1-py3-none-any.whl", hash = "sha256:bf9b754557af4717fe80c2b07cc2b923a9151f5c08d17bdb5345dac09d6a0430", size = 58465, upload-time = "2025-01-08T23:45:00.029Z" },
 ]
 
 [[package]]

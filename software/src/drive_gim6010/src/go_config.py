@@ -1,11 +1,39 @@
 import can
+import platform
 import struct
 import time
 import json
 from datetime import datetime
 
 # CAN接続の設定
-bus = can.interface.Bus(interface='socketcan', channel='can0', bitrate=1000000)
+def create_can_bus(can_channel='can0', bitrate=1000000):
+    """Create and return a CAN bus object.
+
+    On Linux this will try to open a socketcan interface. On other
+    platforms (macOS, Windows) it will fall back to python-can's
+    virtual bus for local testing so the script can run without
+    hardware/OS support for PF_CAN.
+    """
+    system = platform.system()
+    # prefer explicit 'bustype' kwarg (python-can API)
+    try:
+        if system == 'Linux':
+            return can.interface.Bus(interface='socketcan', channel=can_channel, bitrate=bitrate)
+        else:
+            print(f"Warning: SocketCAN not available on {system}; using virtual CAN bus for testing.")
+            return can.interface.Bus(interface='virtual')
+    except Exception as e:
+        # Best-effort fallback to virtual bus
+        print(f"Failed to open socketcan bus ({e}); falling back to virtual bus.")
+        try:
+            return can.interface.Bus(bustype='virtual')
+        except Exception as e2:
+            print(f"Failed to open virtual CAN bus as well: {e2}")
+            raise
+
+
+# open the bus once at import time
+bus = create_can_bus()
 
 # コマンドID定義
 CMD_ID_SET_AXIS_STATE = 0x007
@@ -199,7 +227,13 @@ def reopen_can_bus(can_channel='can0', bitrate=1000000):
         pass
     # ほんの短い猶予をおく
     time.sleep(0.05)
-    bus = can.interface.Bus(interface='socketcan', channel=can_channel, bitrate=bitrate)
+    # Use the same factory so platform-specific fallback applies
+    try:
+        bus = create_can_bus(can_channel=can_channel, bitrate=bitrate)
+    except Exception:
+        # re-raise the error after a short sleep to avoid silent failures
+        time.sleep(0.05)
+        bus = create_can_bus(can_channel=can_channel, bitrate=bitrate)
 
 def move_to_calibrated_position(node_id, target_shadow_count, zero_offsets=None):
     """キャリブレーション位置にモータを移動"""

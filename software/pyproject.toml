@@ -29,7 +29,7 @@ keywords = [
 ]
 
 dependencies = [
-    "python-can>=4.3.1",
+    "python-can[gs-usb]>=4.3.1",
     "numpy>=1.26",
     "matplotlib>=3.8",
     "pyzmq>=26.0",
